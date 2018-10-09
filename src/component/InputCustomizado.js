@@ -9,8 +9,14 @@ export default class InputCustomizado extends Component {
 
     componentDidMount(){
         PubSub.subscribe("erro-validacao",function(topico,erro) {
-            this.setState({msgErro:erro.defaultMessage});
+           if (erro.field === this.props.name) {
+               this.setState({msgErro:erro.defaultMessage});
+           }
         }.bind(this));
+
+        PubSub.subscribe("limpa-msg-erro",function(topico) {
+                this.setState({msgErro:''});
+         }.bind(this));
     }
 
     render() {

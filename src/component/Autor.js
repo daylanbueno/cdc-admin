@@ -28,14 +28,22 @@ class FormularioAutor extends Component {
            success: function(novaLista) { // se der bom.
              console.log("enviado com sucesso");
              PubSub.publish('atualiza-lista-autores',novaLista);
-          },
+             this.setState({nome:'', email:'', senha:''});
+          }.bind(this),
            error: function(resposta) {  // se der ruim.
             if (resposta.status === 400) {
                 new TratadorErros().publicaErros(resposta.responseJSON);
             }
-           }      
+           }, 
+           beforeSend: function() {
+             PubSub.publish('limpa-msg-erro',{});
+           }     
          });
     }
+
+
+      
+
 
     setNome(evento) {
         this.setState({nome:evento.target.value});
