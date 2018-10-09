@@ -41,10 +41,6 @@ class FormularioAutor extends Component {
          });
     }
 
-
-      
-
-
     setNome(evento) {
         this.setState({nome:evento.target.value});
     }
