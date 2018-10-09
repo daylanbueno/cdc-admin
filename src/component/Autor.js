@@ -110,7 +110,7 @@ export class AutorBox extends Component {
     }
 
     atualizaLista(novaLista) {
-        this.setState({novaLista});
+        this.setState({lista:novaLista});
     }
 
     render() {
