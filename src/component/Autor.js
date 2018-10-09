@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import $ from 'jquery';
 import InputCustomizado from './InputCustomizado';
 import ButtonComponent from './ButtonComponent';
+import PubSub from 'pubsub-js';
 
 class FormularioAutor extends Component {
 
@@ -23,10 +24,10 @@ class FormularioAutor extends Component {
            dataType:'json', // qual tipo de resposta vai receber
            type:'post', // tipo de requisição
            data: JSON.stringify({nome:this.state.nome,email:this.state.email,senha:this.state.senha}),
-           success: function(resposta) { // se der bom.
+           success: function(novaLista) { // se der bom.
              console.log("enviado com sucesso");
-             this.props.callBackAtualizaLista(resposta);
-          }.bind(this), // já  que ele não sabe de quem é this.. bind(this)  informando que this do react.
+             PubSub.publish('atualiza-lista-autores',novaLista);
+          },
            error: function(resposta) {  // se der ruim.
              console.log("erro",resposta);
            }      
@@ -96,7 +97,6 @@ export class AutorBox extends Component {
     constructor() {
         super();
         this.state = {lista : []};
-        this.atualizaLista = this.atualizaLista.bind(this); 
     }
 
     componentDidMount() { // inciar antes de montar o component.
@@ -107,16 +107,16 @@ export class AutorBox extends Component {
             this.setState({lista:resposta});
             }.bind(this) 
         });
-    }
-
-    atualizaLista(novaLista) {
-        this.setState({lista:novaLista});
+        
+        PubSub.subscribe('atualiza-lista-autores', function(topico,novaLista){
+            this.setState({lista:novaLista});
+        }.bind(this));
     }
 
     render() {
         return (
             <div>
-                <FormularioAutor callBackAtualizaLista={this.atualizaLista}/>
+                <FormularioAutor/>
                 <TabelaAutor lista={this.state.lista}/>
             </div>
         );
