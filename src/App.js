@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import './App.css';
 import './css/pure-min.css';
 import './css/side-menu.css';
+import {Link} from 'react-router';
 
-import {AutorBox} from './component/Autor';
+
 
 class App extends Component {
 
@@ -22,33 +23,25 @@ class App extends Component {
 
             <ul className="pure-menu-list">
                 <li className="pure-menu-item">
-                    <a href="#" className="pure-menu-link">Home</a>
+                    <Link to="#" className="pure-menu-link">Home</Link>
                 </li>
 
                 <li className="pure-menu-item">
-                    <a href="#" className="pure-menu-link">Autor</a>
+                    <Link to="/Autor" className="pure-menu-link">Autor</Link>
                 </li>
 
                 <li className="pure-menu-item menu-item-divided pure-menu-selected">
-                    <a href="#" className="pure-menu-link">Livro</a>
+                    <Link to="/Livro" className="pure-menu-link">Livro</Link>
                 </li>
             </ul>
         </div>
     </div>
 
-    <div id="main">
-        <div id="main">
-            <div className="header">
-              <h1>Cadastro de Autores</h1>
-            </div>
-                <div className="content" id="content">
-                    <AutorBox/>
-                <div>            
-              </div>             
-            </div>
-            </div>
-        </div>
-    </div>
+     <div id="main">
+        {this.props.children}
+    </div> 
+
+ </div>
 
     );
   }
