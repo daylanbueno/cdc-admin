@@ -4,6 +4,8 @@ import InputCustomizado from './InputCustomizado';
 import ButtonComponent from './ButtonComponent';
 import PubSub from 'pubsub-js';
 import TratadorErros from './TratadorErros';
+import Table from '@material-ui/core';
+import Tabela from './Tabela';
 
 class FormularioAutor extends Component {
 
@@ -132,7 +134,9 @@ export class AutorBox extends Component {
                 </div>     
                 <div className="content" id="content">
                   <FormularioAutor/>
-                  <TabelaAutor lista={this.state.lista}/>
+                 {/* <TabelaAutor lista={this.state.lista}/>*/}  
+                {console.log("Lista autores ",this.state.lista)}
+                  <Tabela data={this.state.lista}/>
                 </div>  
             </div>
         );

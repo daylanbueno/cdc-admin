@@ -33,6 +33,11 @@ class App extends Component {
                 <li className="pure-menu-item menu-item-divided pure-menu-selected">
                     <Link to="/Livro" className="pure-menu-link">Livro</Link>
                 </li>
+               {/* somente para fazer um teste.
+                <li className="pure-menu-item menu-item-divided pure-menu-selected">
+                    <Link to="/Tabela" className="pure-menu-link">Tabela</Link>
+                </li>
+               */}
             </ul>
         </div>
     </div>
