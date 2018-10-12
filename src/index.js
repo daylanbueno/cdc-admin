@@ -5,7 +5,6 @@ import App from './App';
 import {Router,Route,browserHistory, IndexRoute} from 'react-router';
 import { AutorBox } from './component/Autor';
 import  LivroBox  from './component/Livro';
-import Tabela from  './component/Tabela';
 
 import Home from './component/Home';
 
